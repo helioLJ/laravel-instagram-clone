@@ -1,65 +1,90 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Instagram Clone with Laravel Sail and Vue.js
+This project is an Instagram clone built using PHP Laravel Sail as the backend and Vue.js for the frontend. It mimics some of the core functionality of Instagram, allowing users to upload photos, follow other users, and like and comment on posts.
 
-## About Laravel
+## Features
+- User registration and authentication
+- Post creation and image uploads
+- User profiles with profile pictures
+- Follow and unfollow other users
+- Like and comment on posts
+- News feed displaying posts from followed users
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Technologies Used
+- Laravel Sail: Laravel Sail is a lightweight command-line tool for managing Laravel applications within Docker containers. It simplifies the development environment setup.
+- Laravel: Laravel is a popular PHP framework known for its elegant syntax and developer-friendly features.
+- Vue.js: Vue.js is a progressive JavaScript framework for building user interfaces. It's used for the frontend of this project to create dynamic and interactive components.
+- Tailwind CSS: Tailwind CSS is a utility-first CSS framework that helps in rapidly building custom-designed web applications.
+- MySQL: The project uses MySQL as the database to store user data, posts, likes, and comments.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Getting Started
+Follow these steps to get the Instagram clone up and running on your local development environment.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Pre-requisites
+Make sure you have Docker installed on your system.
+Installation
+Clone the repository:
 
-## Learning Laravel
+```bash
+git clone https://github.com/yourusername/instagram-clone.git
+```
+Navigate to the project directory:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```bash
+cd instagram-clone
+```
+Copy the .env.example file to .env:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```bash
+cp .env.example .env
+```
+Start the Docker containers using Laravel Sail:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+```bash
+./vendor/bin/sail up -d
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Generate an application key:
 
-### Premium Partners
+```bash
+./vendor/bin/sail artisan key:generate
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Run the database migrations and seed the database:
 
-## Contributing
+```bash
+./vendor/bin/sail artisan migrate --seed
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Install the frontend dependencies and build the assets:
 
-## Code of Conduct
+```bash
+./vendor/bin/sail npm install
+./vendor/bin/sail npm run dev
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Your Instagram clone should now be accessible at http://localhost.
 
-## Security Vulnerabilities
+## Usage
+Register for an account and start using the Instagram clone to upload photos, follow users, like posts, and comment on content.
+Contributing
+If you'd like to contribute to this project, please follow these guidelines:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- Clone the repository.
+- Create a new branch for your feature or bug fix.
+- Make your changes and commit them with clear commit messages.
+- Push your changes to your fork.
+- Create a pull request to the main repository.
+
+
+## Acknowledgments
+This project was inspired by the Instagram platform.
+Special thanks to the Laravel, Vue.js, and Tailwind CSS communities for creating amazing tools and resources.
+
+## Contact
+If you have any questions or suggestions, please feel free to contact us at contato@heliodev.tech
 
 ## License
 

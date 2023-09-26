@@ -4,7 +4,7 @@ import { Head } from '@inertiajs/vue3';
 </script>
 
 <template>
-    <Head title="Dashboard" />
+    <Head title="Home" />
 
     <AuthenticatedLayout>
         <div class="flex items-center mt-7 ">
@@ -13,7 +13,7 @@ import { Head } from '@inertiajs/vue3';
             </div>
             <div class="w-3/4 space-y-3">
                 <div class="flex items-center gap-6">
-                    <h1 class="text-xl">Freecodecamp</h1>
+                    <h1 class="text-xl">{{ $page.props.auth.user.username }}</h1>
                     <button class="bg-blue-500 rounded text-white px-4 py-0.5 font-bold">follow</button>
                 </div>
                 <div class="flex items-center gap-5">
@@ -28,7 +28,7 @@ import { Head } from '@inertiajs/vue3';
                     </div>
                 </div>
                 <div>
-                    <p class="font-bold">freeCodeCamp.org</p>
+                    <p class="font-bold">{{ $page.props.auth.user.name }}</p>
                     <p>We're a global community of millions of people learning to code together. LearnToCodeRPG</p>
                     <a class="text-blue-600" href="https://www.freecodecamp.org/">https://www.freecodecamp.org/</a>
                 </div>
