@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,9 @@ Route::get('/', function () {
 });
 
 Route::get('/profile/{id}', [ProfileController::class, 'show'])->middleware(['auth', 'verified'])->name('profile.show');
+
+Route::get('/p/create', [PostsController::class, 'create'])->middleware(['auth', 'verified'])->name('post.create');
+Route::post('/p', [PostsController::class, 'store'])->middleware(['auth', 'verified'])->name('post.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 </script>
 
 <template>
@@ -12,9 +12,15 @@ import { Head } from '@inertiajs/vue3';
                 <img class="rounded-full w-40" src="https://play-lh.googleusercontent.com/MoaYYQjGtmGLhG9HbjCDKyj44kwHj1HfbCI2Am70elRm35vJ-u4y4X5uEJjP97MAAsU=w240-h480-rw" alt="">
             </div>
             <div class="w-3/4 space-y-3">
-                <div class="flex items-center gap-6">
-                    <h1 class="text-xl">{{ $page.props.user.username }}</h1>
-                    <button class="bg-blue-500 rounded text-white px-4 py-0.5 font-bold">follow</button>
+                <div class="flex items-baseline justify-between gap-6">
+                    <h1 class="text-3xl">{{ $page.props.user.username }}</h1>
+                    <!-- <button class="bg-blue-500 rounded text-white px-4 py-0.5 font-bold">follow</button> -->
+                    <Link
+                        :href="route('post.create')"
+                        :active="route().current('post')"
+                    >
+                        Add New Post
+                    </Link>
                 </div>
                 <div class="flex items-center gap-5">
                     <div>

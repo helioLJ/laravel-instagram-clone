@@ -19,8 +19,8 @@ class ProfileController extends Controller
      */
     public function show($user, Request $request): Response
     {
-        $user = User::with('profile')->find($user);
-        
+        $user = User::with('profile')->findOrFail($user);
+
         return Inertia::render('Profile', [
             'user' =>  $user,
             'status' => session('status'),
