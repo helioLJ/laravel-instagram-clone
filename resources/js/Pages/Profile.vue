@@ -16,8 +16,8 @@ import { Head, Link } from '@inertiajs/vue3';
                     <h1 class="text-3xl">{{ $page.props.user.username }}</h1>
                     <!-- <button class="bg-blue-500 rounded text-white px-4 py-0.5 font-bold">follow</button> -->
                     <Link
+                        class="text-blue-500 font-bold"
                         :href="route('post.create')"
-                        :active="route().current('post')"
                     >
                         Add New Post
                     </Link>

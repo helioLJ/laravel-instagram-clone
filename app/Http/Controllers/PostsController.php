@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Intervention\Image\Facades\Image;
@@ -18,7 +19,7 @@ class PostsController extends Controller
         return Inertia::render('Posts/CreatePost');
     }
 
-    public function store(Request $request)
+    public function store()
     {
         $data = request()->validate([
             'caption' => 'required',
@@ -36,5 +37,13 @@ class PostsController extends Controller
         ]);
 
         return redirect('/profile/' . auth()->user()->id);
+    }
+
+    public function show(\App\Models\Post $post, Request $request)
+    {
+        return Inertia::render('Posts/ShowPost', [
+            'user' => $request->user(),
+            'post' =>  $post,
+        ]);
     }
 }

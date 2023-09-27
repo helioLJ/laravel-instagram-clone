@@ -18,7 +18,7 @@ const submit = () => {
 </script>
 
 <template>
-    <Head title="Profile" />
+    <Head title="Create Post" />
 
     <AuthenticatedLayout>
         <form @submit.prevent="submit" enctype="multipart/form-data">
