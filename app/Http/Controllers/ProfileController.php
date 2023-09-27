@@ -33,8 +33,10 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): Response
     {
+        $this->authorize('update', $request->user()->profile);
+        $user = User::with('profile')->findOrFail($request->user()->id);
         return Inertia::render('Profile/Edit', [
-            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
+            'user' =>  $user,
             'status' => session('status'),
         ]);
     }

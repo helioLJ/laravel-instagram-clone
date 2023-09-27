@@ -9,11 +9,6 @@ use Intervention\Image\Facades\Image;
 
 class PostsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function create()
     {
         return Inertia::render('Posts/CreatePost');
@@ -41,8 +36,9 @@ class PostsController extends Controller
 
     public function show(\App\Models\Post $post, Request $request)
     {
+        $user = User::findOrFail($post->user_id);
         return Inertia::render('Posts/ShowPost', [
-            'user' => $request->user(),
+            'user' => $user,
             'post' =>  $post,
         ]);
     }

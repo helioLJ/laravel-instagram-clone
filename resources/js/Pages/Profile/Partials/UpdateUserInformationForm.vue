@@ -1,4 +1,5 @@
 <script setup>
+import FileInput from '@/Components/FileInput.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
@@ -14,71 +15,91 @@ defineProps({
     },
 });
 
-const user = usePage().props.user;
+const user = usePage().props.auth.user;
 
 const form = useForm({
-    title: user.profile.title,
-    description: user.profile.description,
-    url: user.profile.url,
+    name: user.name,
+    username: user.username,
+    email: user.email,
+    // image: user.image,
 });
 </script>
 
 <template>
     <section>
         <header>
-            <h2 class="text-lg font-medium text-gray-900">Profile Information</h2>
+            <h2 class="text-lg font-medium text-gray-900">User Information</h2>
 
             <p class="mt-1 text-sm text-gray-600">
-                Update your account's profile information and email address.
+                Update your account's user information and email address.
             </p>
         </header>
 
-        <form @submit.prevent="form.patch(route('profileinfo.update'))" class="mt-6 space-y-6">
-            <div>
-                <InputLabel for="title" value="Title" />
-
-                <TextInput
-                    id="title"
-                    type="text"
+        <form @submit.prevent="form.patch(route('profile.update'))" class="mt-6 space-y-6">
+            <div class="flex items-center gap-10">
+                <!-- <img :src="'/storage/' + $page.props.post.image" :alt="$page.props.post.caption"> -->
+                <img class="rounded-full w-40" src="https://play-lh.googleusercontent.com/MoaYYQjGtmGLhG9HbjCDKyj44kwHj1HfbCI2Am70elRm35vJ-u4y4X5uEJjP97MAAsU=w240-h480-rw" alt="">
+                <div>
+                    <InputLabel for="image" value="Image" />
+                    
+                <FileInput
+                    id="image"
+                    type="file"
                     class="mt-1 block w-full"
-                    v-model="form.title"
-                    required
+                    v-model="form.image"
                     autofocus
-                    autocomplete="title"
-                />
-
-                <InputError class="mt-2" :message="form.errors.title" />
+                    autocomplete="image"
+                    />
+                    
+                    <InputError class="mt-2" :message="form.errors.image" />
+                </div>
             </div>
 
             <div>
-                <InputLabel for="description" value="Bio" />
+                <InputLabel for="username" value="Username" />
 
                 <TextInput
-                    id="description"
+                    id="username"
                     type="text"
                     class="mt-1 block w-full"
-                    v-model="form.description"
+                    v-model="form.username"
                     required
                     autofocus
-                    autocomplete="description"
+                    autocomplete="username"
                 />
 
-                <InputError class="mt-2" :message="form.errors.description" />
+                <InputError class="mt-2" :message="form.errors.username" />
             </div>
 
             <div>
-                <InputLabel for="url" value="Link" />
+                <InputLabel for="name" value="Name" />
 
                 <TextInput
-                    id="url"
-                    type="url"
+                    id="name"
+                    type="text"
                     class="mt-1 block w-full"
-                    v-model="form.url"
+                    v-model="form.name"
+                    required
+                    autofocus
+                    autocomplete="name"
+                />
+
+                <InputError class="mt-2" :message="form.errors.name" />
+            </div>
+
+            <div>
+                <InputLabel for="email" value="Email" />
+
+                <TextInput
+                    id="email"
+                    type="email"
+                    class="mt-1 block w-full"
+                    v-model="form.email"
                     required
                     autocomplete="username"
                 />
 
-                <InputError class="mt-2" :message="form.errors.url" />
+                <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
             <div v-if="mustVerifyEmail && user.email_verified_at === null">
