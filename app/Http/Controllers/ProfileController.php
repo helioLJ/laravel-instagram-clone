@@ -19,7 +19,7 @@ class ProfileController extends Controller
      */
     public function show($user, Request $request): Response
     {
-        $user = User::with('profile')->findOrFail($user);
+        $user = User::with('profile', 'posts')->findOrFail($user);
 
         return Inertia::render('Profile', [
             'user' =>  $user,

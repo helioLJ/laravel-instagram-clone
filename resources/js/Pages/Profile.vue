@@ -24,7 +24,7 @@ import { Head, Link } from '@inertiajs/vue3';
                 </div>
                 <div class="flex items-center gap-5">
                     <div>
-                        <p><span class="font-bold">153</span> posts</p>
+                        <p><span class="font-bold">{{ $page.props.user.posts.length }}</span> posts</p>
                     </div>
                     <div>
                         <p><span class="font-bold">23k</span> followers</p>
@@ -55,31 +55,9 @@ import { Head, Link } from '@inertiajs/vue3';
             </div>
 
             <div class="grid grid-cols-3 gap-4">
-                <a class="h-[394.68px] w-full" href="#">
-                    <img class="w-full h-full" src="https://www.forbes.com/advisor/wp-content/uploads/2022/06/freecodecamp.jpeg.jpg" alt="">
+                <a v-for="post in $page.props.user.posts" :key="post.id" :href="'/post/' + post.id">
+                    <img class="" :src="'/storage/' + post.image" :alt="post.caption" />
                 </a>
-
-                <a class="h-[394.68px] w-full" href="#">
-                    <img class="w-full h-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZcgJ4Ar1QX0oTCF4pLRqDYER2JxiASNfS5A&usqp=CAU" alt="">
-                </a>
-
-                <a class="h-[394.68px] w-full" href="#">
-                    <img class="w-full h-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkRqNcrE6W7FUKwaJ3ELf1VjFtPlvyXTx7Fw&usqp=CAU" alt="">
-                </a>
-
-
-                <a class="h-[394.68px] w-full" href="#">
-                    <img class="w-full h-full" src="https://www.freecodecamp.org/news/content/images/2023/08/freeCodeCamp-Press.png" alt="">
-                </a>
-
-                <a class="h-[394.68px] w-full" href="#">
-                    <img class="w-full h-full" src="https://www.freecodecamp.org/news/content/images/2021/12/Learn_CSS_Transforms_by_Building_a_Penguin__Step_104___freeCodeCamp_org-1.jpg" alt="">
-                </a>
-
-                <a class="h-[394.68px] w-full" href="#">
-                    <img class="w-full h-full" src="https://guiadeti.com.br/wp-content/uploads/2023/05/freeCodeCamp-1024x676.png" alt="">
-                </a>
-
             </div>
         </div>
     </AuthenticatedLayout>
