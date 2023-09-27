@@ -1,4 +1,5 @@
 <script setup>
+import FileInput from '@/Components/FileInput.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
@@ -18,7 +19,9 @@ const user = usePage().props.auth.user;
 
 const form = useForm({
     name: user.name,
+    username: user.username,
     email: user.email,
+    // image: user.image,
 });
 </script>
 
@@ -33,6 +36,41 @@ const form = useForm({
         </header>
 
         <form @submit.prevent="form.patch(route('profile.update'))" class="mt-6 space-y-6">
+            <div class="flex items-center gap-10">
+                <!-- <img :src="'/storage/' + $page.props.post.image" :alt="$page.props.post.caption"> -->
+                <img class="rounded-full w-40" src="https://play-lh.googleusercontent.com/MoaYYQjGtmGLhG9HbjCDKyj44kwHj1HfbCI2Am70elRm35vJ-u4y4X5uEJjP97MAAsU=w240-h480-rw" alt="">
+                <div>
+                    <InputLabel for="image" value="Image" />
+                    
+                <FileInput
+                    id="image"
+                    type="file"
+                    class="mt-1 block w-full"
+                    v-model="form.image"
+                    autofocus
+                    autocomplete="image"
+                    />
+                    
+                    <InputError class="mt-2" :message="form.errors.image" />
+                </div>
+            </div>
+
+            <div>
+                <InputLabel for="username" value="Username" />
+
+                <TextInput
+                    id="username"
+                    type="text"
+                    class="mt-1 block w-full"
+                    v-model="form.username"
+                    required
+                    autofocus
+                    autocomplete="username"
+                />
+
+                <InputError class="mt-2" :message="form.errors.username" />
+            </div>
+
             <div>
                 <InputLabel for="name" value="Name" />
 
