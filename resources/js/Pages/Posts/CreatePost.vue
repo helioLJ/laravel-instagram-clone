@@ -5,14 +5,15 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, useForm } from '@inertiajs/vue3';
+import FileInput from '@/Components/FileInput.vue';
 
 const form = useForm({
     caption: '',
-    img: null,
+    image: null,
 });
 
 const submit = () => {
-    form.post(route('p.store'));
+    form.post(route('post.store'));
 };
 </script>
 
@@ -20,7 +21,7 @@ const submit = () => {
     <Head title="Profile" />
 
     <AuthenticatedLayout>
-        <form @submit.prevent="submit">
+        <form @submit.prevent="submit" enctype="multipart/form-data">
             <div>
                 <InputLabel for="caption" value="Caption" />
 
@@ -39,7 +40,7 @@ const submit = () => {
             <div>
                 <InputLabel for="image" value="Image" />
 
-                <TextInput
+                <FileInput
                     id="image"
                     type="file"
                     class="mt-1 block w-full"
