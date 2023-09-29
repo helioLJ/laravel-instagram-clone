@@ -12,11 +12,13 @@ use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
 
+
 class ProfileController extends Controller
 {
     /**
      * Show the profile for a given user.
      */
+
     public function show($user, Request $request): Response
     {
         $user = User::with('profile', 'posts')->findOrFail($user);

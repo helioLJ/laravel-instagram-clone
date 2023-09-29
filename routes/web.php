@@ -19,20 +19,12 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Home', [
-        'user' => auth()->user(),
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
 
 Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
 
 Route::post('/follow/{user}', [FollowsController::class, 'store'])->name('follow.store');
 
+Route::get('/', [PostsController::class, 'index'])->name('post.index');
 Route::get('/post/create', [PostsController::class, 'create'])->middleware(['auth', 'verified'])->name('post.create');
 Route::get('/post/{post}', [PostsController::class, 'show'])->name('post.show');
 Route::post('/post', [PostsController::class, 'store'])->name('post.store');
