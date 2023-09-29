@@ -36,7 +36,7 @@ class PostsController extends Controller
 
     public function show(\App\Models\Post $post, Request $request)
     {
-        $user = User::findOrFail($post->user_id);
+        $user = User::with('profile')->findOrFail($post->user_id);
         return Inertia::render('Posts/ShowPost', [
             'user' => $user,
             'post' =>  $post,

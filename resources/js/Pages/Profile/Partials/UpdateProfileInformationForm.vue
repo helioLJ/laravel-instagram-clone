@@ -36,7 +36,6 @@ const form = useForm({
         </header>
 
         <form enctype="multipart/form-data" @submit.prevent="form.patch(route('profileinfo.update'))" class="mt-6 space-y-6">
-
             <div>
                 <InputLabel for="title" value="Title" />
 
