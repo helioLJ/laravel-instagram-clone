@@ -9,7 +9,7 @@ import { Head, Link } from '@inertiajs/vue3';
     <AuthenticatedLayout>
         <div class="flex items-center mt-7 ">
             <div class="flex justify-center items-center w-1/4">
-                <img class="rounded-full w-40" src="https://play-lh.googleusercontent.com/MoaYYQjGtmGLhG9HbjCDKyj44kwHj1HfbCI2Am70elRm35vJ-u4y4X5uEJjP97MAAsU=w240-h480-rw" alt="">
+                <img class="rounded-full w-40" :src="'/storage/' + $page.props.user.profile.image">
             </div>
             <div class="w-3/4 space-y-3">
                 <div class="flex items-baseline justify-between gap-6">

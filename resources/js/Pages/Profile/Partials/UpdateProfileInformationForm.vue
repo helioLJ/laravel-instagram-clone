@@ -1,4 +1,5 @@
 <script setup>
+import FileInput from '@/Components/FileInput.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
@@ -20,6 +21,7 @@ const form = useForm({
     title: user.profile.title,
     description: user.profile.description,
     url: user.profile.url,
+    image: null
 });
 </script>
 
@@ -33,7 +35,8 @@ const form = useForm({
             </p>
         </header>
 
-        <form @submit.prevent="form.patch(route('profileinfo.update'))" class="mt-6 space-y-6">
+        <form enctype="multipart/form-data" @submit.prevent="form.patch(route('profileinfo.update'))" class="mt-6 space-y-6">
+
             <div>
                 <InputLabel for="title" value="Title" />
 

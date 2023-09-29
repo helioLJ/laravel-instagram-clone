@@ -17,6 +17,7 @@ class ProfileInfoUpdateRequest extends FormRequest
             'title' => ['string', 'max:255'],
             'description' => ['string', 'max:255'],
             'url' => ['string', 'max:255', 'url'],
+            'image' => ['file', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
         ];
     }
 }

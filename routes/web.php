@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+    Route::post('/profileinfo', [ProfileInfoController::class, 'store'])->name('profileinfo.store');
     Route::patch('/profileinfo', [ProfileInfoController::class, 'update'])->name('profileinfo.update');
 });
 
