@@ -15,7 +15,7 @@ import { Head, Link } from '@inertiajs/vue3';
             <div class="w-3/4 space-y-3">
                 <div class="flex items-baseline justify-between gap-6">
                     <h1 class="text-3xl">{{ $page.props.user.username }}</h1>
-                    <FollowButton :userId="$page.props.user.id" v-if="$page.props.user.id != $page.props.auth.user.id" />
+                    <FollowButton :follows="$page.props.follows" :userId="$page.props.user.id" />
                     <Link
                         v-if="$page.props.user.id == $page.props.auth.user.id"
                         class="text-blue-500 font-bold"

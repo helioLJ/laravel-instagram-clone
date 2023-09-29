@@ -20,9 +20,17 @@ class ProfileController extends Controller
     public function show($user, Request $request): Response
     {
         $user = User::with('profile', 'posts')->findOrFail($user);
+        $follows = false;
+
+        if (auth()->user()) {
+            // dd($user->id);
+            // dd($request->user()->id);
+            $follows = auth()->user()->following->contains($user->id);
+        }
 
         return Inertia::render('Profile', [
             'user' =>  $user,
+            'follows' =>  $follows,
             'status' => session('status'),
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
         ]);
