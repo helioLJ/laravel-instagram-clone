@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -23,8 +24,27 @@ class ProfileController extends Controller
     {
         $user = User::with('profile', 'posts')->findOrFail($user);
         $follows = false;
-        $followers = $user->profile->followers->count();
-        $following = $user->following->count();
+        $posts = Cache::remember(
+            'count.posts.' . $user->id,
+            now()->addSecond(30),
+            function () use ($user) {
+                return $user->posts->count();
+            }
+        );
+        $followers = Cache::remember(
+            'count.follower.' . $user->id,
+            now()->addSecond(30),
+            function () use ($user) {
+                return $user->profile->followers->count();
+            }
+        );
+        $following = Cache::remember(
+            'count.following.' . $user->id,
+            now()->addSecond(30),
+            function () use ($user) {
+                return $user->following->count();
+            }
+        );
         
         if (auth()->user()) {
             $follows = auth()->user()->following->contains($user->id);
@@ -35,6 +55,7 @@ class ProfileController extends Controller
             'follows' =>  $follows,
             'followers' =>  $followers,
             'following' =>  $following,
+            'posts' =>  $posts,
             'status' => session('status'),
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
         ]);

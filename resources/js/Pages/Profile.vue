@@ -34,7 +34,7 @@ import { Head, Link } from '@inertiajs/vue3';
                 </div>
                 <div class="flex items-center gap-5">
                     <div>
-                        <p><span class="font-bold">{{ $page.props.user.posts.length }}</span> posts</p>
+                        <p><span class="font-bold">{{ $page.props.posts }}</span> posts</p>
                     </div>
                     <div>
                         <p><span class="font-bold">{{ $page.props.followers }}</span> followers</p>
