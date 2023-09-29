@@ -21,7 +21,9 @@ class ProfileController extends Controller
     {
         $user = User::with('profile', 'posts')->findOrFail($user);
         $follows = false;
-
+        $followers = $user->profile->followers->count();
+        $following = $user->following->count();
+        
         if (auth()->user()) {
             $follows = auth()->user()->following->contains($user->id);
         }
@@ -29,6 +31,8 @@ class ProfileController extends Controller
         return Inertia::render('Profile', [
             'user' =>  $user,
             'follows' =>  $follows,
+            'followers' =>  $followers,
+            'following' =>  $following,
             'status' => session('status'),
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
         ]);

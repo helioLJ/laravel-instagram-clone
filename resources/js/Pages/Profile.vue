@@ -37,10 +37,10 @@ import { Head, Link } from '@inertiajs/vue3';
                         <p><span class="font-bold">{{ $page.props.user.posts.length }}</span> posts</p>
                     </div>
                     <div>
-                        <p><span class="font-bold">23k</span> followers</p>
+                        <p><span class="font-bold">{{ $page.props.followers }}</span> followers</p>
                     </div>
                     <div>
-                        <p><span class="font-bold">212</span> following</p>
+                        <p><span class="font-bold">{{ $page.props.following }}</span> following</p>
                     </div>
                 </div>
                 <div>

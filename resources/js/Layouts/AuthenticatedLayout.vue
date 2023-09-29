@@ -71,7 +71,7 @@ const showingNavigationDropdown = ref(false);
                                 </Dropdown>
                             </div>
                             <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
-                                <template v-if="!$page.props.user">
+                                <template v-if="!$page.props.auth.user">
                                     <Link
                                         :href="route('login')"
                                         class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
@@ -79,7 +79,6 @@ const showingNavigationDropdown = ref(false);
                                     >
 
                                     <Link
-                                        v-if="!$page.props.user"
                                         :href="route('register')"
                                         class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
                                         >Register</Link
@@ -123,6 +122,7 @@ const showingNavigationDropdown = ref(false);
                 <div
                     :class="{ block: showingNavigationDropdown, hidden: !showingNavigationDropdown }"
                     class="sm:hidden"
+                    v-if="$page.props.auth.user"
                 >
                     <div class="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink :href="route('profile.show', { id: 1 })" :active="route().current('profile')">
