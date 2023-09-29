@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FollowsController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProfileInfoController;
@@ -28,6 +29,8 @@ Route::get('/', function () {
 });
 
 Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
+
+Route::post('/follow/{user}', [FollowsController::class, 'store'])->name('follow.store');
 
 Route::get('/post/create', [PostsController::class, 'create'])->middleware(['auth', 'verified'])->name('post.create');
 Route::get('/post/{post}', [PostsController::class, 'show'])->name('post.show');
