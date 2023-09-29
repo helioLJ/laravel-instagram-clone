@@ -17,7 +17,7 @@ const showingNavigationDropdown = ref(false);
                     <div class="flex justify-between h-16">
                         <div class="flex">
                             <div class="shrink-0 flex items-center">
-                                <Link :href="route('profile.show', { id: $page.props.auth.user.id })">
+                                <Link href="/">
                                     <div class="flex justify-between items-center gap-4">
                                         <ApplicationLogo
                                         class="block h-6 w-auto fill-current text-gray-800"
@@ -62,7 +62,7 @@ const showingNavigationDropdown = ref(false);
                                     </template>
 
                                     <template #content>
-                                        <DropdownLink :href="route('profile.edit', { id: $page.props.auth.user.id })"> Profile </DropdownLink>
+                                        <DropdownLink :href="route('profile.show', { id: $page.props.auth.user.id })"> Profile </DropdownLink>
                                         <DropdownLink :href="route('profile.edit')"> Edit Profile </DropdownLink>
                                         <DropdownLink :href="route('logout')" method="post" as="button">
                                             Log Out
@@ -71,7 +71,7 @@ const showingNavigationDropdown = ref(false);
                                 </Dropdown>
                             </div>
                             <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
-                                <template v-if="!$page.props.auth.user">
+                                <template v-if="!$page.props.user">
                                     <Link
                                         :href="route('login')"
                                         class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
@@ -79,7 +79,7 @@ const showingNavigationDropdown = ref(false);
                                     >
 
                                     <Link
-                                        v-if="!$page.props.auth.user"
+                                        v-if="!$page.props.user"
                                         :href="route('register')"
                                         class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
                                         >Register</Link
@@ -133,9 +133,9 @@ const showingNavigationDropdown = ref(false);
                     <div class="pt-4 pb-1 border-t border-gray-200">
                         <div class="px-4">
                             <div class="font-medium text-base text-gray-800">
-                                {{ $page.props.auth.user.name }}
+                                {{ $page.props.user.name }}
                             </div>
-                            <div class="font-medium text-sm text-gray-500">{{ $page.props.auth.user.email }}</div>
+                            <div class="font-medium text-sm text-gray-500">{{ $page.props.user.email }}</div>
                         </div>
 
                         <div class="mt-3 space-y-1">

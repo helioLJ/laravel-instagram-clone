@@ -21,6 +21,7 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Home', [
+        'user' => auth()->user(),
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,

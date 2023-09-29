@@ -23,8 +23,6 @@ class ProfileController extends Controller
         $follows = false;
 
         if (auth()->user()) {
-            // dd($user->id);
-            // dd($request->user()->id);
             $follows = auth()->user()->following->contains($user->id);
         }
 

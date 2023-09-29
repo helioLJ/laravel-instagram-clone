@@ -9,9 +9,12 @@ use Intervention\Image\Facades\Image;
 
 class PostsController extends Controller
 {
-    public function create()
+    public function create(Request $request)
     {
-        return Inertia::render('Posts/CreatePost');
+        $user = User::with('profile')->findOrFail($request->user()->id);
+        return Inertia::render('Posts/CreatePost', [
+            'user' => $user,
+        ]);
     }
 
     public function store()
@@ -34,7 +37,7 @@ class PostsController extends Controller
         return redirect('/profile/' . auth()->user()->id);
     }
 
-    public function show(\App\Models\Post $post, Request $request)
+    public function show(\App\Models\Post $post)
     {
         $user = User::with('profile')->findOrFail($post->user_id);
         return Inertia::render('Posts/ShowPost', [
