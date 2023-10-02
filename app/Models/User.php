@@ -59,6 +59,12 @@ class User extends Authenticatable
 
             // Mail::to($user->email)->send(new NewUserWelcomeMail);
         });
+
+        // Define an event listener for the 'retrieved' event
+        static::retrieved(function ($user) {
+            // Eager load the 'profile' relationship
+            $user->load('profile');
+        });
     }
 
     public function posts()

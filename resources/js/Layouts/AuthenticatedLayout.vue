@@ -7,6 +7,9 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/vue3';
 
 const showingNavigationDropdown = ref(false);
+
+// console.log($page.props)
+
 </script>
 
 <template >
@@ -43,7 +46,11 @@ const showingNavigationDropdown = ref(false);
                                                 type="button"
                                                 class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
                                             >
-                                                @{{ $page.props.auth.user.username }}
+
+                                            <div class="flex gap-3 items-center">
+                                                <img class="rounded-full w-10" :src="'/storage/' + $page.props.auth.user.profile.image" :alt="$page.props.auth.user.username">
+                                                <p>@{{ $page.props.auth.user.username }}</p>
+                                            </div>
 
                                                 <svg
                                                     class="ml-2 -mr-0.5 h-4 w-4"
@@ -74,13 +81,13 @@ const showingNavigationDropdown = ref(false);
                                 <template v-if="!$page.props.auth.user">
                                     <Link
                                         :href="route('login')"
-                                        class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                                        class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-black focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
                                         >Log in</Link
                                     >
 
                                     <Link
                                         :href="route('register')"
-                                        class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                                        class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-black focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
                                         >Register</Link
                                     >
                                 </template>
@@ -154,9 +161,13 @@ const showingNavigationDropdown = ref(false);
                 </div>
             </header>
 
-            <main class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                <slot />
-            </main>
+            <div class="flex">
+                <slot name="aside" />
+
+                <main class="max-w-7xl w-full mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <slot />
+                </main>
+            </div>
         </div>
     </div>
 </template>

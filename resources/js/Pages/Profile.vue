@@ -2,13 +2,15 @@
 import FollowButton from '@/Components/FollowButton.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
+
+// console.log($page.props)
 </script>
 
 <template>
     <Head title="Profile" />
 
     <AuthenticatedLayout>
-        <div class="flex items-center mt-7 ">
+        <div class="flex items-center mt-7">
             <div class="flex justify-center items-center w-1/4">
                 <img class="rounded-full w-40" :src="'/storage/' + $page.props.user.profile.image">
             </div>
@@ -17,7 +19,7 @@ import { Head, Link } from '@inertiajs/vue3';
                     <h1 class="text-3xl">{{ $page.props.user.username }}</h1>
                     <div>
                         <div v-if="$page.props.auth.user">
-                            <FollowButton :follows="$page.props.follows" :userId="$page.props.user.id" v-if="$page.props.user.id != $page.props.auth.user.id" />
+                            <FollowButton :follows="$page.props.follows[$page.props.user.id]" :userId="$page.props.user.id" v-if="$page.props.user.id != $page.props.auth.user.id" />
                             <Link
                                 v-if="$page.props.user.id == $page.props.auth.user.id"
                                 class="text-blue-500 font-bold"
@@ -27,7 +29,7 @@ import { Head, Link } from '@inertiajs/vue3';
                             </Link>
                         </div>
                         <div v-else>
-                            <FollowButton :follows="$page.props.follows" :userId="$page.props.user.id" />
+                            <FollowButton :follows="$page.props.follows[$page.props.user.id]" :userId="$page.props.user.id" />
                         </div>
                     </div>
 

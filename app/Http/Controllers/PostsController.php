@@ -14,16 +14,31 @@ class PostsController extends Controller
 {
     public function index()
     {
+        $allUsers = [];
+        $follows = [];
         if(auth()->user()) {
             $users = auth()->user()->following()->pluck('profiles.user_id');
-            $posts = Post::whereIn('user_id', $users)->with('user.profile')->latest()->paginate(5);
+            $posts = Post::whereIn('user_id', $users)
+            ->orWhere('user_id', auth()->user()->id) // Include posts from the current user
+            ->with('user.profile')
+            ->latest()
+            ->paginate(5);
+            $allUsers = User::with('profile')->get();
+        
+            // Loop through each user and check if the logged-in user follows them
+            foreach ($allUsers as $user) {
+                $follows[$user->id] = auth()->user()->following->contains($user->id);
+            }
         } else {
             $posts = Post::latest()->with('user.profile')->paginate(5);
+            $allUsers = User::with('profile')->get();
         }
 
         return Inertia::render('Home', [
             'user' => auth()->user(),
+            'users' => $allUsers,
             'posts' => $posts,
+            'follows' => $follows,
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
             'laravelVersion' => Application::VERSION,

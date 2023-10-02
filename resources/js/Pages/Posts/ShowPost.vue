@@ -15,9 +15,7 @@ import { Head } from '@inertiajs/vue3';
                     <div class="flex items-center gap-4 mb-8">
                         <img class="rounded-full w-10" :src="'/storage/' + $page.props.user.profile.image" :alt="$page.props.user.username">
 
-                        <p>
-                            <a class="font-bold" :href="'/profile/' + $page.props.user.id">{{ $page.props.user.username }}</a> - <button class="text-blue-500">Follow</button>
-                        </p>
+                        <a class="font-bold" :href="'/profile/' + $page.props.user.id">{{ $page.props.user.username }}</a>
                     </div>
 
                     <p class="mb-6"><a class="font-bold" :href="'/profile/' + $page.props.user.id">{{ $page.props.user.username }}</a> {{ $page.props.post.caption }}</p>

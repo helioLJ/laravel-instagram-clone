@@ -22,36 +22,42 @@ class ProfileController extends Controller
 
     public function show($user, Request $request): Response
     {
-        $user = User::with('profile', 'posts')->findOrFail($user);
+        $userFound = User::with('profile', 'posts')->findOrFail($user);
         $follows = false;
         $posts = Cache::remember(
-            'count.posts.' . $user->id,
+            'count.posts.' . $userFound->id,
             now()->addSecond(30),
-            function () use ($user) {
-                return $user->posts->count();
+            function () use ($userFound) {
+                return $userFound->posts->count();
             }
         );
         $followers = Cache::remember(
-            'count.follower.' . $user->id,
+            'count.follower.' . $userFound->id,
             now()->addSecond(30),
-            function () use ($user) {
-                return $user->profile->followers->count();
+            function () use ($userFound) {
+                return $userFound->profile->followers->count();
             }
         );
         $following = Cache::remember(
-            'count.following.' . $user->id,
+            'count.following.' . $userFound->id,
             now()->addSecond(30),
-            function () use ($user) {
-                return $user->following->count();
+            function () use ($userFound) {
+                return $userFound->following->count();
             }
         );
         
+        $allUsers = User::with('profile')->get();
+
         if (auth()->user()) {
-            $follows = auth()->user()->following->contains($user->id);
+            $follows = [];
+            foreach ($allUsers as $user) {
+                $follows[$user->id] = auth()->user()->following->contains($user->id);
+            }
         }
 
         return Inertia::render('Profile', [
-            'user' =>  $user,
+            'user' =>  $userFound,
+            'users' =>  $allUsers,
             'follows' =>  $follows,
             'followers' =>  $followers,
             'following' =>  $following,
