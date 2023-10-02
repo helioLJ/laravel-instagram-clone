@@ -20,10 +20,10 @@ class ProfileFactory extends Factory
     {
         return [
             'user_id' => null, // Define the user ID when creating a profile
-            'title' => fake()->sentence,
-            'description' => fake()->paragraph,
-            'url' => fake()->url,
-            'image' => fake()->imageUrl(640, 480, 'animals', true),
+            'title' => fake()->word(),
+            'description' => fake()->paragraph(),
+            'url' => fake()->url(),
+            'image' => fake()->imageUrl(),
         ];
     }
 

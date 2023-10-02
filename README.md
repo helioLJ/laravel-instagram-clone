@@ -1,7 +1,10 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<img src="./README/helio.png" width="400" >
+<img src="./README/neymar.png" width="400" >
 
 # Instagram Clone with Laravel Sail and Vue.js
 This project is an Instagram clone built using PHP Laravel Sail as the backend and Vue.js for the frontend. It mimics some of the core functionality of Instagram, allowing users to upload photos, follow other users, and like and comment on posts.
+
+<img src="./README/app.gif" width="400" >
 
 ## Features
 [x] User registration and authentication

@@ -20,6 +20,7 @@ defineProps({
     },
 });
 
+// console.log($page)
 
 </script>
 
@@ -33,7 +34,10 @@ defineProps({
                 <div v-if="$page.props.auth.user" v-for="user in $page.props.users">
                     <div :key="user.id" v-if="user.id !== $page.props.auth.user.id" class="flex items-center gap-4 mb-4 justify-between">
                         <div class="flex items-center gap-4">
-                            <img class="rounded-full w-10" :src="'/storage/' + user.profile.image" :alt="user.username">
+                            <img 
+                                class="rounded-full w-10 h-10"
+                                :src="(user.profile.image.startsWith('https://via.placeholder.com')) ? user.profile.image : '/storage/' + user.profile.image" 
+                                :alt="user.username">
                             <a :href="'/profile/' + user.id" class="font-bold">{{ user.username }}</a>
                         </div>
                         <FollowButton :follows="$page.props.follows[user.id]" :userId="user.id" />
@@ -42,7 +46,9 @@ defineProps({
                 <div v-else v-for="user in $page.props.users">
                     <div :key="user.id" class="flex items-center gap-4 mb-4 justify-between">
                         <div class="flex items-center gap-4">
-                            <img class="rounded-full w-10" :src="'/storage/' + user.profile.image" :alt="user.username">
+                            <img class="rounded-full w-10 h-10"
+                            :src="(user.profile.image.startsWith('https://via.placeholder.com')) ? user.profile.image : '/storage/' + user.profile.image" 
+                            :alt="user.username">
                             <a :href="'/profile/' + user.id" class="font-bold">{{ user.username }}</a>
                         </div>
                         <FollowButton :follows="false" :userId="user.id" />
@@ -62,8 +68,8 @@ defineProps({
                     <a class="block" :key="post.id" :href="'/post/' + post.id">
                         <div class="flex items-center gap-4 p-4">
                             <img
-                                class="rounded-full w-10"
-                                :src="'/storage/' + post.user.profile.image"
+                                class="rounded-full w-10 h-10"
+                                :src="(post.user.profile.image.startsWith('https://via.placeholder.com')) ? post.user.profile.image : '/storage/' + post.user.profile.image" 
                                 :alt="post.user.username"
                             >
 

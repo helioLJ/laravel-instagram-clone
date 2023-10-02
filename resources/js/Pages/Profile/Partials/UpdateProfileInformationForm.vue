@@ -21,7 +21,6 @@ const form = useForm({
     title: user.profile.title,
     description: user.profile.description,
     url: user.profile.url,
-    image: null
 });
 </script>
 
@@ -35,7 +34,7 @@ const form = useForm({
             </p>
         </header>
 
-        <form enctype="multipart/form-data" @submit.prevent="form.patch(route('profileinfo.update'))" class="mt-6 space-y-6">
+        <form @submit.prevent="form.patch(route('profileinfo.update'))" class="mt-6 space-y-6">
             <div>
                 <InputLabel for="title" value="Title" />
 
@@ -44,7 +43,6 @@ const form = useForm({
                     type="text"
                     class="mt-1 block w-full"
                     v-model="form.title"
-                    required
                     autofocus
                     autocomplete="title"
                 />
@@ -60,7 +58,6 @@ const form = useForm({
                     type="text"
                     class="mt-1 block w-full"
                     v-model="form.description"
-                    required
                     autofocus
                     autocomplete="description"
                 />
@@ -76,7 +73,6 @@ const form = useForm({
                     type="url"
                     class="mt-1 block w-full"
                     v-model="form.url"
-                    required
                     autocomplete="username"
                 />
 

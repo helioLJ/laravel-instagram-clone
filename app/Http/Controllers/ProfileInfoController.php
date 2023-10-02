@@ -17,7 +17,6 @@ class ProfileInfoController extends Controller
     public function update(ProfileInfoUpdateRequest $request): RedirectResponse
     {
         $request->user()->profile->fill($request->validated());
-        dd($request->validated());
 
         $request->user()->profile->save();
 

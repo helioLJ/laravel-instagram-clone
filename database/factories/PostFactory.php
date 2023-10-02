@@ -20,7 +20,7 @@ class PostFactory extends Factory
     {
         return [
             'user_id' => null, // Define the user ID when creating a post
-            'caption' => fake()->sentence,
+            'caption' => fake()->sentence(),
             'image' => fake()->imageUrl(),
         ];
     }

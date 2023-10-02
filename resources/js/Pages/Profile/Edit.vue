@@ -39,7 +39,9 @@ const form = useForm({
                 <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                     <form enctype="multipart/form-data" @submit.prevent="form.post(route('profileinfo.store'))" class="mt-6 space-y-6">
                         <div class="flex items-center gap-10">
-                            <img class="rounded-full w-40" :src="'/storage/' + $page.props.user.profile.image">
+                            <img class="rounded-full w-40 h-40"
+                            :src="($page.props.user.profile.image.startsWith('https://via.placeholder.com')) ? $page.props.user.profile.image : '/storage/' + $page.props.user.profile.image" 
+                            >
                             <div>
                                 <InputLabel for="image" value="Image" />
                                     

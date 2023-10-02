@@ -48,7 +48,9 @@ const showingNavigationDropdown = ref(false);
                                             >
 
                                             <div class="flex gap-3 items-center">
-                                                <img class="rounded-full w-10" :src="'/storage/' + $page.props.auth.user.profile.image" :alt="$page.props.auth.user.username">
+                                                <img class="rounded-full w-10 h-10"
+                                                :src="($page.props.auth.user.profile.image.startsWith('https://via.placeholder.com')) ? $page.props.auth.user.profile.image : '/storage/' + $page.props.auth.user.profile.image" 
+                                                :alt="$page.props.auth.user.username">
                                                 <p>@{{ $page.props.auth.user.username }}</p>
                                             </div>
 

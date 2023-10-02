@@ -51,14 +51,17 @@ class User extends Authenticatable
     {
         parent::boot();
 
-        static::created(function (User $user) {
-            $user->profile()->create([
-                'title' => $user->username,
-                'image' => 'profile/default-user.jpg'
-            ]);
+        // Check if the method is running in the factory context
+        if (!app()->runningInConsole()) {
+            static::created(function (User $user) {
+                $user->profile()->create([
+                    'title' => $user->username,
+                    'image' => 'profile/default-user.jpg'
+                ]);
 
-            // Mail::to($user->email)->send(new NewUserWelcomeMail);
-        });
+                // Mail::to($user->email)->send(new NewUserWelcomeMail);
+            });
+        }
 
         // Define an event listener for the 'retrieved' event
         static::retrieved(function ($user) {

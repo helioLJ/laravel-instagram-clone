@@ -16,18 +16,22 @@ class PostsController extends Controller
     {
         $allUsers = [];
         $follows = [];
-        if(auth()->user()) {
+        
+        if (auth()->user()) {
             $users = auth()->user()->following()->pluck('profiles.user_id');
             $posts = Post::whereIn('user_id', $users)
-            ->orWhere('user_id', auth()->user()->id) // Include posts from the current user
-            ->with('user.profile')
-            ->latest()
-            ->paginate(5);
+                ->orWhere('user_id', auth()->user()->id) // Include posts from the current user
+                ->with('user.profile')
+                ->latest()
+                ->paginate(5);
             $allUsers = User::with('profile')->get();
-        
+    
+            // Get the IDs of profiles that the logged-in user follows
+            $followedProfileIds = auth()->user()->following->pluck('id')->toArray();
+    
             // Loop through each user and check if the logged-in user follows them
             foreach ($allUsers as $user) {
-                $follows[$user->id] = auth()->user()->following->contains($user->id);
+                $follows[$user->id] = in_array($user->profile->id, $followedProfileIds);
             }
         } else {
             $posts = Post::latest()->with('user.profile')->paginate(5);

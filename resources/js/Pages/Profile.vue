@@ -12,7 +12,10 @@ import { Head, Link } from '@inertiajs/vue3';
     <AuthenticatedLayout>
         <div class="flex items-center mt-7">
             <div class="flex justify-center items-center w-1/4">
-                <img class="rounded-full w-40" :src="'/storage/' + $page.props.user.profile.image">
+                <img
+                class="rounded-full w-40 h-40"
+                :src="($page.props.user.profile.image.startsWith('https://via.placeholder.com')) ? $page.props.user.profile.image : '/storage/' + $page.props.user.profile.image" 
+                >
             </div>
             <div class="w-3/4 space-y-3">
                 <div class="flex items-baseline justify-between gap-6">

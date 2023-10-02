@@ -16,7 +16,9 @@ import { Head } from '@inertiajs/vue3';
                 >
                 <div class="bg-white p-4">
                     <div class="flex items-center gap-4 mb-8">
-                        <img class="rounded-full w-10" :src="'/storage/' + $page.props.user.profile.image" :alt="$page.props.user.username">
+                        <img class="rounded-full w-10 h-10"
+                        :src="($page.props.user.profile.image.startsWith('https://via.placeholder.com')) ? $page.props.user.profile.image : '/storage/' + $page.props.user.profile.image" 
+                        :alt="$page.props.user.username">
                         
 
                         <a class="font-bold" :href="'/profile/' + $page.props.user.id">{{ $page.props.user.username }}</a>
@@ -24,7 +26,7 @@ import { Head } from '@inertiajs/vue3';
 
                     <p class="mb-6"><a class="font-bold" :href="'/profile/' + $page.props.user.id">{{ $page.props.user.username }}</a> {{ $page.props.post.caption }}</p>
 
-                    <p class="mb-6"><a class="font-bold" :href="'/profile/' + $page.props.user.id">Chris_Nolan</a> Lets gooo</p>
+                    <p class="mb-6"><a class="font-bold" :href="'/profile/' + $page.props.user.id">helioLJ</a> Comments here some day</p>
                 </div>
 
                 <!-- <div>Likes and etc</div> -->
