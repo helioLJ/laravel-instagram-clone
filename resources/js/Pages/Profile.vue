@@ -68,7 +68,10 @@ import { Head, Link } from '@inertiajs/vue3';
 
             <div class="grid grid-cols-3 gap-4">
                 <a v-for="post in $page.props.user.posts" :key="post.id" :href="'/post/' + post.id">
-                    <img class="" :src="'/storage/' + post.image" :alt="post.caption" />
+                    <img
+                        :src="(post.image.startsWith('https://via.placeholder.com')) ? post.image : '/storage/' + post.image" 
+                        :alt="post.caption"
+                    />
                 </a>
             </div>
         </div>

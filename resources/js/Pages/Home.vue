@@ -61,14 +61,21 @@ defineProps({
                 <div class="w-[600px]  overflow-hidden border border-black/10" v-for="post in $page.props.posts.data" :key="post.id" :href="'/post/' + post.id">
                     <a class="block" :key="post.id" :href="'/post/' + post.id">
                         <div class="flex items-center gap-4 p-4">
-                            <img class="rounded-full w-10" :src="'/storage/' + post.user.profile.image" :alt="post.user.username">
+                            <img
+                                class="rounded-full w-10"
+                                :src="'/storage/' + post.user.profile.image"
+                                :alt="post.user.username"
+                            >
 
                             <p>
                                 <a class="font-bold" :href="'/profile/' + post.user.id">{{ post.user.username }}</a>
                             </p>
                         </div>
 
-                        <img :src="'/storage/' + post.image" :alt="post.caption">
+                        <img 
+                            :src="(post.image.startsWith('https://via.placeholder.com')) ? post.image : '/storage/' + post.image" 
+                            :alt="post.caption"
+                        >
 
                         <div class="bg-white p-4">
                             <p class=""><a class="font-bold" :href="'/profile/' + post.user.id">{{ post.user.username }}</a> {{ post.caption }}</p>

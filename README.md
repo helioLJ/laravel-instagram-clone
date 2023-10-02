@@ -4,12 +4,17 @@
 This project is an Instagram clone built using PHP Laravel Sail as the backend and Vue.js for the frontend. It mimics some of the core functionality of Instagram, allowing users to upload photos, follow other users, and like and comment on posts.
 
 ## Features
-- User registration and authentication
-- Post creation and image uploads
-- User profiles with profile pictures
-- Follow and unfollow other users
-- Like and comment on posts
-- News feed displaying posts from followed users
+[x] User registration and authentication
+
+[x] Post creation and image uploads
+
+[x] User profiles with profile pictures
+
+[x] Follow and unfollow other users
+
+[ ] Like and comment on posts
+
+[x] News feed displaying posts from followed users
 
 ## Technologies Used
 - Laravel Sail: Laravel Sail is a lightweight command-line tool for managing Laravel applications within Docker containers. It simplifies the development environment setup.
@@ -27,12 +32,12 @@ Installation
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/instagram-clone.git
+git clone https://github.com/helioLJ/laravel-instagram-clone.git
 ```
 Navigate to the project directory:
 
 ```bash
-cd instagram-clone
+cd laravel-instagram-clone
 ```
 Copy the .env.example file to .env:
 
@@ -46,16 +51,10 @@ Start the Docker containers using Laravel Sail:
 ./vendor/bin/sail up -d
 ```
 
-Generate an application key:
-
-```bash
-./vendor/bin/sail artisan key:generate
-```
-
 Run the database migrations and seed the database:
 
 ```bash
-./vendor/bin/sail artisan migrate --seed
+./vendor/bin/sail artisan db:seed
 ```
 
 Install the frontend dependencies and build the assets:
