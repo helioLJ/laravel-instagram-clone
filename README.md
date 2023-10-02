@@ -51,6 +51,7 @@ Start the Docker containers using Laravel Sail:
 
 
 ```bash
+./vendor/bin/sail composer install
 ./vendor/bin/sail up -d
 ```
 
